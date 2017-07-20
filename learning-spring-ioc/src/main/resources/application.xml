@@ -3,5 +3,9 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
     <bean id="service" class="com.example.spring.ioc.Service" init-method="printInfo">
+        <property name="dao" ref="dao"></property>
+    </bean>
+
+    <bean id="dao" class="com.example.spring.ioc.Dao">
     </bean>
 </beans>

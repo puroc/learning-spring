@@ -5,6 +5,8 @@ package com.example.spring.ioc;
  */
 public class Service {
 
+    private Dao dao;
+
     public void printInfo(){
         Student student = new Student();
         student.setName("zhangsan");
@@ -14,4 +16,11 @@ public class Service {
     }
 
 
+    public void setDao(Dao dao) {
+        this.dao = dao;
+    }
+
+    public Dao getDao() {
+        return dao;
+    }
 }

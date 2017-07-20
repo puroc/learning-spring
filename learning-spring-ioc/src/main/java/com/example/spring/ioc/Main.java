@@ -9,10 +9,6 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class Main {
 
     public static void main(String[] args) {
-//        GenericApplicationContext context = new GenericApplicationContext();
-//        new XmlBeanDefinitionReader(context).loadBeanDefinitions("application.xml");
-//        context.refresh();
-
         ApplicationContext context = new ClassPathXmlApplicationContext("application.xml");
     }
 }

@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/learning-spring.iml" filepath="$PROJECT_DIR$/learning-spring.iml" />
+      <module fileurl="file://$PROJECT_DIR$/learning-spring-ioc/learning-spring-ioc.iml" filepath="$PROJECT_DIR$/learning-spring-ioc/learning-spring-ioc.iml" />
     </modules>
   </component>
 </project>

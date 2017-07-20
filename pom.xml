@@ -6,7 +6,14 @@
 
     <groupId>com.example.spring</groupId>
     <artifactId>learning-spring</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>learning-spring-ioc</module>
+    </modules>
+
+
+
 
 
 </project>

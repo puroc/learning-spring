@@ -10,6 +10,8 @@ public class Main {
 
     public static void main(String[] args) {
         AbstractApplicationContext context = new ClassPathXmlApplicationContext("application.xml");
+
+        //对于非web环境的spring容器,只有注册hook之后,bean的destroy方法才能被调用
         context.registerShutdownHook();
 
     }

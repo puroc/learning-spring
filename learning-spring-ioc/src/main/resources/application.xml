@@ -14,4 +14,8 @@
     </bean>
 
     <bean id="testSmartLifecycle" class="com.example.spring.ioc.TestSmartLifecycle"/>
+
+    <bean id="testApplicationContextAware" class="com.example.spring.ioc.TestApplicationContextAware"/>
+
+
 </beans>

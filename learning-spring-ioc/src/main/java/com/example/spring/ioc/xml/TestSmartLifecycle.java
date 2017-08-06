@@ -1,4 +1,4 @@
-package com.example.spring.ioc;
+package com.example.spring.ioc.xml;
 
 import org.springframework.context.SmartLifecycle;
 

@@ -1,4 +1,4 @@
-package com.example.spring.ioc;
+package com.example.spring.ioc.xml;
 
 /**
  * Created by puroc on 17/7/20.

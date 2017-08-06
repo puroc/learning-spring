@@ -2,20 +2,20 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-    <bean id="service" class="com.example.spring.ioc.Service" init-method="init" destroy-method="destroy">
+    <bean id="service" class="com.example.spring.ioc.xml.Service" init-method="init" destroy-method="destroy">
         <property name="dao" ref="dao"></property>
     </bean>
 
-    <bean id="dao" class="com.example.spring.ioc.Dao"/>
+    <bean id="dao" class="com.example.spring.ioc.xml.Dao"/>
 
-    <bean id="testInitializingBean" class="com.example.spring.ioc.TestInitializingBean">
+    <bean id="testInitializingBean" class="com.example.spring.ioc.xml.TestInitializingBean">
         <property name="a" value="1"></property>
         <property name="b" value="2"></property>
     </bean>
 
-    <bean id="testSmartLifecycle" class="com.example.spring.ioc.TestSmartLifecycle"/>
+    <bean id="testSmartLifecycle" class="com.example.spring.ioc.xml.TestSmartLifecycle"/>
 
-    <bean id="testApplicationContextAware" class="com.example.spring.ioc.TestApplicationContextAware"/>
+    <bean id="testApplicationContextAware" class="com.example.spring.ioc.xml.TestApplicationContextAware"/>
 
 
 </beans>

@@ -1,4 +1,4 @@
-package com.example.spring.ioc;
+package com.example.spring.ioc.annotation;
 
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -9,7 +9,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class Main {
 
     public static void main(String[] args) {
-        AbstractApplicationContext context = new ClassPathXmlApplicationContext("application.xml");
+        AbstractApplicationContext context = new ClassPathXmlApplicationContext("beans2.xml");
 
         //对于非web环境的spring容器,只有注册hook之后,bean的destroy方法才能被调用
         context.registerShutdownHook();

@@ -10,10 +10,10 @@ import javax.annotation.PreDestroy;
  * Created by puroc on 2017/8/6.
  */
 @Component
-public class S {
+public class Service {
 
     @Autowired
-    private D d;
+    private Dao dao;
 
     @PostConstruct
     public void init(){

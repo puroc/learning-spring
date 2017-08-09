@@ -15,7 +15,13 @@
 
     <bean id="testSmartLifecycle" class="com.example.spring.ioc.xml.TestSmartLifecycle"/>
 
-    <bean id="testApplicationContextAware" class="com.example.spring.ioc.xml.TestApplicationContextAware"/>
+    <bean id="testApplicationContextAware" class="com.example.spring.ioc.xml.TestAware"/>
 
+    <bean id="teacher" class="com.example.spring.ioc.xml.Teacher" init-method="init">
+        <property name="name" value="wang"></property>
+    </bean>
+
+    <bean id="testBeanFactoryPostProcessor" class="com.example.spring.ioc.xml.TestBeanFactoryPostProcessor"></bean>
+    <bean id="testBeanPostProcessor" class="com.example.spring.ioc.xml.TestBeanPostProcessor"></bean>
 
 </beans>

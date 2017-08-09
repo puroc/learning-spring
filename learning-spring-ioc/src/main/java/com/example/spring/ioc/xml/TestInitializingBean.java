@@ -27,6 +27,7 @@ public class TestInitializingBean implements InitializingBean {
         this.b = b;
     }
 
+    //bean的属性设置完毕后,回调该接口
     @Override
     public void afterPropertiesSet() throws Exception {
         System.out.println("属性设置完毕,a:" + a + ",b:" + b);

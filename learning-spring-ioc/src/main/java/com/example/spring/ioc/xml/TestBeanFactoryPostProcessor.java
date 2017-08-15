@@ -11,6 +11,14 @@ import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
  */
 public class TestBeanFactoryPostProcessor implements BeanFactoryPostProcessor{
 
+
+    /*
+    spring内置的BeanFactoryPostProcessor
+    org.springframework.beans.factory.config.PropertyPlaceholderConfigurer
+    org.springframework.beans.factory.config.PropertyOverrideConfigurer
+    org.springframework.beans.factory.config.CustomEditorConfigurer
+    */
+
     //在bean实例化之前,修改bean的定义
     @Override
     public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {

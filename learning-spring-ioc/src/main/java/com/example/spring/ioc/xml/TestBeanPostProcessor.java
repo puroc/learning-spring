@@ -23,7 +23,7 @@ public class TestBeanPostProcessor implements BeanPostProcessor {
         return bean;
     }
 
-    //bean实例化之后,调用初始化方法之前回调
+    //bean实例化之后,调用初始化方法之后回调
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
         System.out.println("after:" + beanName + "实例化");

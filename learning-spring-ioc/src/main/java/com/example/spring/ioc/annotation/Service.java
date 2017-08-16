@@ -17,17 +17,17 @@ public class Service implements InitializingBean {
     private Dao dao;
 
     @PostConstruct
-    public void init(){
+    public void init() {
         System.out.println("init");
     }
 
     @PreDestroy
-    public void destroy(){
+    public void destroy() {
         System.out.println("destroy");
     }
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        System.out.println("111 "+dao);
+        System.out.println("111 " + dao);
     }
 }

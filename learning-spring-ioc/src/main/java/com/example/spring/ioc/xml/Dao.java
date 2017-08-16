@@ -12,4 +12,8 @@ public class Dao {
     public void delete(){
 
     }
+
+    public void update(){
+
+    }
 }

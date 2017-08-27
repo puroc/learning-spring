@@ -14,7 +14,7 @@
     <bean id="throwableAdvice" class="com.example.spring.aop.advice.ThrowableAdvice"/>
 
     <!--声明一个被代理对象,实现了某接口,可以通过jdk的动态代理和cglib动态代理-->
-    <bean id="person" class="com.example.spring.aop.domain.Person"/>
+    <bean id="worker" class="com.example.spring.aop.domain.Person"/>
     <!--声明了一个被代理对象,他就是一个类,只能使用cglib动态代理-->
     <bean id="dog" class="com.example.spring.aop.domain.Dog"/>
 
@@ -22,25 +22,25 @@
     <!--声明一个代理对象-->
     <bean id="beforePerson"
           class="org.springframework.aop.framework.ProxyFactoryBean"
-          p:proxyInterfaces="com.example.spring.aop.domain.Worker" p:target-ref="person"
+          p:proxyInterfaces="com.example.spring.aop.domain.Worker" p:target-ref="worker"
           p:interceptorNames="beforeAdvice"/>
 
     <!--声明一个代理对象-->
     <bean id="afterPerson"
           class="org.springframework.aop.framework.ProxyFactoryBean"
-          p:proxyInterfaces="com.example.spring.aop.domain.Worker" p:target-ref="person"
+          p:proxyInterfaces="com.example.spring.aop.domain.Worker" p:target-ref="worker"
           p:interceptorNames="afterAdvice"/>
 
     <!--声明一个代理对象-->
     <bean id="aroundPerson" class="org.springframework.aop.framework.ProxyFactoryBean"
-          p:proxyInterfaces="com.example.spring.aop.domain.Worker" p:target-ref="person"
+          p:proxyInterfaces="com.example.spring.aop.domain.Worker" p:target-ref="worker"
           p:interceptorNames="aroundAdvice"/>
 
     <!--声明一个代理对象-->
     <bean id="throwablePerson" class="org.springframework.aop.framework.ProxyFactoryBean"
           p:proxyInterfaces="com.example.spring.aop.domain.Worker"
           p:interceptorNames="throwableAdvice"
-          p:target-ref="person"/>
+          p:target-ref="worker"/>
 
     <!--声明一个代理对象-->
     <bean id="beforeDog"

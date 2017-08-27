@@ -1,6 +1,7 @@
 package com.example.spring.aop.advisor;
 
 import com.example.spring.aop.domain.Worker;
+import com.example.spring.aop.domain.WorkerDelegate;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -52,6 +53,52 @@ public class TestAdvisor {
             Worker worker = (Worker)ctx.getBean("testDynamicAdvisor");
             worker.say("hi");
             worker.say("haha");
+        } catch (Throwable e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testControlFlowAdvisor() throws Exception {
+        try {
+            String configPath = "beans2.xml";
+            ApplicationContext ctx = new ClassPathXmlApplicationContext(configPath);
+            Worker worker = (Worker)ctx.getBean("testControlFlowAdvisor");
+            worker.testBeforeAdvice();
+            worker.hello();
+            WorkerDelegate wd = new WorkerDelegate();
+            wd.setWorker(worker);
+            wd.service();
+        } catch (Throwable e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testComposableAdvisor() throws Exception {
+        try {
+            String configPath = "beans2.xml";
+            ApplicationContext ctx = new ClassPathXmlApplicationContext(configPath);
+            Worker worker = (Worker)ctx.getBean("testComposableAdvisor");
+            worker.testBeforeAdvice();
+            worker.hello();
+            WorkerDelegate wd = new WorkerDelegate();
+            wd.setWorker(worker);
+            wd.service();
+        } catch (Throwable e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testIntroduceAdvisor() throws Exception {
+        try {
+            String configPath = "beans2.xml";
+            ApplicationContext ctx = new ClassPathXmlApplicationContext(configPath);
+            Worker worker = (Worker)ctx.getBean("testIntroduceAdvisor");
+            worker.hello();
+            ((Monitorable)worker).setMonitorActive(true);
+            worker.hello();
         } catch (Throwable e) {
             e.printStackTrace();
         }

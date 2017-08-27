@@ -4,31 +4,49 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
      http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
 
-    <bean id="beforeAdvice" class="com.example.spring.aop.BeforeAdvice"/>
-    <bean id="afterAdvice" class="com.example.spring.aop.AfterAdvice"/>
-    <bean id="aroundAdvice" class="com.example.spring.aop.AroundAdvice"/>
-    <bean id="throwableAdvice" class="com.example.spring.aop.ThrowableAdvice"/>
-    <bean id="person" class="com.example.spring.aop.Person"/>
+    <!--声明一个前置增强-->
+    <bean id="beforeAdvice" class="com.example.spring.aop.advice.BeforeAdvice"/>
+    <!--声明一个后置增强-->
+    <bean id="afterAdvice" class="com.example.spring.aop.advice.AfterAdvice"/>
+    <!--声明一个环绕增强-->
+    <bean id="aroundAdvice" class="com.example.spring.aop.advice.AroundAdvice"/>
+    <!--声明一个异常增强-->
+    <bean id="throwableAdvice" class="com.example.spring.aop.advice.ThrowableAdvice"/>
+
+    <!--声明一个被代理对象,实现了某接口,可以通过jdk的动态代理和cglib动态代理-->
+    <bean id="person" class="com.example.spring.aop.domain.Person"/>
+    <!--声明了一个被代理对象,他就是一个类,只能使用cglib动态代理-->
+    <bean id="dog" class="com.example.spring.aop.domain.Dog"/>
 
 
-    <bean id="before"
+    <!--声明一个代理对象-->
+    <bean id="beforePerson"
           class="org.springframework.aop.framework.ProxyFactoryBean"
-          p:proxyInterfaces="com.example.spring.aop.Worker" p:target-ref="person"
+          p:proxyInterfaces="com.example.spring.aop.domain.Worker" p:target-ref="person"
           p:interceptorNames="beforeAdvice"/>
 
-    <bean id="after"
+    <!--声明一个代理对象-->
+    <bean id="afterPerson"
           class="org.springframework.aop.framework.ProxyFactoryBean"
-          p:proxyInterfaces="com.example.spring.aop.Worker" p:target-ref="person"
+          p:proxyInterfaces="com.example.spring.aop.domain.Worker" p:target-ref="person"
           p:interceptorNames="afterAdvice"/>
 
-    <bean id="around" class="org.springframework.aop.framework.ProxyFactoryBean"
-          p:proxyInterfaces="com.example.spring.aop.Worker" p:target-ref="person"
+    <!--声明一个代理对象-->
+    <bean id="aroundPerson" class="org.springframework.aop.framework.ProxyFactoryBean"
+          p:proxyInterfaces="com.example.spring.aop.domain.Worker" p:target-ref="person"
           p:interceptorNames="aroundAdvice"/>
 
-
-    <bean id="throwable" class="org.springframework.aop.framework.ProxyFactoryBean"
+    <!--声明一个代理对象-->
+    <bean id="throwablePerson" class="org.springframework.aop.framework.ProxyFactoryBean"
+          p:proxyInterfaces="com.example.spring.aop.domain.Worker"
           p:interceptorNames="throwableAdvice"
-          p:target-ref="person"
+          p:target-ref="person"/>
+
+    <!--声明一个代理对象-->
+    <bean id="beforeDog"
+          class="org.springframework.aop.framework.ProxyFactoryBean"
+          p:target-ref="dog"
+          p:interceptorNames="beforeAdvice"
           p:proxyTargetClass="true"/>
 
 </beans>

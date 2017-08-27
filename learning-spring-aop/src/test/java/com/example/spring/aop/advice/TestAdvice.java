@@ -1,5 +1,7 @@
-package com.example.spring.aop;
+package com.example.spring.aop.advice;
 
+import com.example.spring.aop.domain.Dog;
+import com.example.spring.aop.domain.Worker;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -14,7 +16,7 @@ public class TestAdvice {
         try {
             String configPath = "beans1.xml";
             ApplicationContext ctx = new ClassPathXmlApplicationContext(configPath);
-            Worker worker = (Worker)ctx.getBean("before");
+            Worker worker = (Worker)ctx.getBean("beforePerson");
             worker.testBeforeAdvice();
         } catch (Throwable e) {
             e.printStackTrace();
@@ -26,7 +28,7 @@ public class TestAdvice {
         try {
             String configPath = "beans1.xml";
             ApplicationContext ctx = new ClassPathXmlApplicationContext(configPath);
-            Worker worker = (Worker)ctx.getBean("after");
+            Worker worker = (Worker)ctx.getBean("afterPerson");
             worker.testAfterAdvice();
         } catch (Throwable e) {
             e.printStackTrace();
@@ -38,7 +40,7 @@ public class TestAdvice {
         try {
             String configPath = "beans1.xml";
             ApplicationContext ctx = new ClassPathXmlApplicationContext(configPath);
-            Worker worker = (Worker)ctx.getBean("around");
+            Worker worker = (Worker)ctx.getBean("aroundPerson");
             worker.testAroundAdvice();
         } catch (Throwable e) {
             e.printStackTrace();
@@ -50,8 +52,19 @@ public class TestAdvice {
         try {
             String configPath = "beans1.xml";
             ApplicationContext ctx = new ClassPathXmlApplicationContext(configPath);
-            Worker worker = (Worker)ctx.getBean("throwable");
+            Worker worker = (Worker)ctx.getBean("throwablePerson");
             worker.testThrowsAdvice();
+        } catch (Throwable e) {
+//            e.printStackTrace();
+        }
+    }
+    @Test
+    public void testBeforeDog() throws Exception {
+        try {
+            String configPath = "beans1.xml";
+            ApplicationContext ctx = new ClassPathXmlApplicationContext(configPath);
+            Dog dog = (Dog)ctx.getBean("beforeDog");
+            dog.bark();
         } catch (Throwable e) {
             e.printStackTrace();
         }

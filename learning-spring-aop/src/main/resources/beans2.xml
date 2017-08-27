@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	http://www.springframework.org/schema/util 
+	http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+
+	<!--声明一个被代理对象-->
+	<bean id="person" class="com.example.spring.aop.domain.Person"/>
+
+	<!--声明一个前置增强-->
+	<bean id="beforeAdvice" class="com.example.spring.aop.advice.BeforeAdvice"/>
+	<!--声明一个普通切面,关联前置增强-->
+	<bean id="commonAdvisor" class="com.example.spring.aop.advisor.CommonAdvisor"
+		p:advice-ref="beforeAdvice" />
+
+	<bean id="parent" abstract="true"
+		class="org.springframework.aop.framework.ProxyFactoryBean"
+		p:interceptorNames="commonAdvisor" p:proxyTargetClass="true" />
+
+	<!--声明一个代理对象-->
+	<bean id="testCommonAdvisor" parent="parent" p:target-ref="person" />
+
+
+	<!-- 正则表达式方法名匹配切面 -->
+	<bean id="regexpAdvisor"
+		class="org.springframework.aop.support.RegexpMethodPointcutAdvisor"
+		p:advice-ref="beforeAdvice">
+		<property name="patterns">
+			<list>
+				<value>.*test.*</value>
+			</list>
+		</property>
+	</bean>
+	<bean id="testRegexpAdvisor" class="org.springframework.aop.framework.ProxyFactoryBean"
+		p:interceptorNames="regexpAdvisor" p:target-ref="person"
+		p:proxyTargetClass="true" />
+
+
+	<!-- 动态切面 -->
+	<bean id="dynamicAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+		<property name="pointcut">
+			<bean class="com.example.spring.aop.advisor.DynamicPointcut" />
+		</property>
+		<property name="advice">
+			<bean class="com.example.spring.aop.advice.BeforeAdvice" />
+		</property>
+	</bean>
+
+	<bean id="testDynamicAdvisor" class="org.springframework.aop.framework.ProxyFactoryBean"
+		p:interceptorNames="dynamicAdvisor" p:target-ref="person"
+		p:proxyTargetClass="true" />
+
+	<!--&lt;!&ndash; 控制流程切面 &ndash;&gt;-->
+	<!--<bean id="controlFlowPointcut" class="org.springframework.aop.support.ControlFlowPointcut">-->
+		<!--&lt;!&ndash;指定流程切点的类&ndash;&gt;-->
+		<!--<constructor-arg type="java.lang.Class"-->
+			<!--value="com.smart.advisor.WaiterDelegate" />-->
+		<!--&lt;!&ndash;指定流程切点的方法&ndash;&gt;-->
+		<!--<constructor-arg type="java.lang.String" value="service" />-->
+	<!--</bean>-->
+	<!--<bean id="controlFlowAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor"-->
+		<!--p:pointcut-ref="controlFlowPointcut" p:advice-ref="greetingAdvice" />-->
+	<!--<bean id="waiter3" class="org.springframework.aop.framework.ProxyFactoryBean"-->
+		<!--p:interceptorNames="controlFlowAdvisor" p:target-ref="waiterTarget"-->
+		<!--p:proxyTargetClass="true" />-->
+
+	<!--&lt;!&ndash; 复合切点切面 &ndash;&gt;-->
+	<!--<bean id="gcp" class="com.smart.advisor.GreetingComposablePointcut" />-->
+	<!--<bean id="composableAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor"-->
+		<!--p:pointcut="#{gcp.intersectionPointcut}" p:advice-ref="greetingAdvice" />-->
+	<!--<bean id="waiter4" class="org.springframework.aop.framework.ProxyFactoryBean"-->
+		<!--p:interceptorNames="composableAdvisor" p:target-ref="waiterTarget"-->
+		<!--p:proxyTargetClass="true" />-->
+
+	<!--&lt;!&ndash;引入切面&ndash;&gt;-->
+	<!--<bean id="introduceAdvisor"-->
+		<!--class="org.springframework.aop.support.DefaultIntroductionAdvisor">-->
+		<!--<constructor-arg>-->
+			<!--<bean class="com.smart.introduce.ControllablePerformaceMonitor" />-->
+		<!--</constructor-arg>-->
+	<!--</bean>-->
+	<!--<bean id="forumServiceTarget" class="com.smart.introduce.ForumService" />-->
+	<!--<bean id="forumService" class="org.springframework.aop.framework.ProxyFactoryBean"-->
+	      <!--p:interceptorNames="introduceAdvisor"-->
+	      <!--p:target-ref="forumServiceTarget"-->
+	      <!--p:proxyTargetClass="true"/>-->
+</beans>

@@ -20,7 +20,7 @@ public class TestAdvisor {
             //testBeforeAdvice是以test开头的方法,应该被切
             worker.testBeforeAdvice();
             //testAfterAdvice是以test开头的方法,应该被切
-            worker.testAfterAdvice();
+//            worker.testAfterAdvice();
             //hello不是以test开头的方法,不应该被切
             worker.hello();
         } catch (Throwable e) {

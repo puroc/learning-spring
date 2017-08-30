@@ -31,8 +31,16 @@ public class PersonDao {
         });
     }
 
-    public void insertFailed(Person person) throws SQLException {
-        throw new SQLException("insertFailed");
+    public void insertFailedWithSQLException(Person person) throws SQLException {
+        throw new SQLException("insertFailedWithSQLException");
+    }
+
+    public void insertFailedWithChildSQLException(Person person) throws SQLException {
+        throw new SQLWarning("insert SQLWarning");
+    }
+
+    public void insertFailedWithRuntimeException(Person person){
+        throw new RuntimeException();
     }
 
     public Person getByName(String name) {
@@ -47,5 +55,10 @@ public class PersonDao {
                     }
                 });
         return person;
+    }
+
+    public int countByName(String name){
+        String sql = "SELECT count(name) FROM person WHERE name=?";
+        return jdbcTemplate.queryForObject(sql,new Object[]{name},Integer.class);
     }
 }

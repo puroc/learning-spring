@@ -18,12 +18,12 @@ public class Service implements InitializingBean {
 
     @PostConstruct
     public void init() {
-        System.out.println("init");
+        System.out.println("service init");
     }
 
     @PreDestroy
     public void destroy() {
-        System.out.println("destroy");
+        System.out.println("service destroy");
     }
 
     @Override

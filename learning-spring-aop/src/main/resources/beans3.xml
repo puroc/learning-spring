@@ -9,24 +9,25 @@ http://www.springframework.org/schema/beans/spring-beans-4.0.xsd http://www.spri
     <!--声明一个被代理对象-->
     <bean id="worker" class="com.example.spring.aop.domain.Person"/>
 
+    <bean id="doctor" class="com.example.spring.aop.domain.Person"/>
+
     <!--声明一个前置增强-->
     <bean id="beforeAdvice" class="com.example.spring.aop.advice.BeforeAdvice"/>
     <bean id="afterAdvice" class="com.example.spring.aop.advice.AfterAdvice"/>
 
     <!-- 为er和or结尾的bean自动创建代理 -->
-    <bean
-            class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator"
-            p:beanNames="*er,*or" p:interceptorNames="beforeAdvice"
-            p:optimize="true"/>
+    <!--<bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator"-->
+    <!--p:beanNames="*er,*or" p:interceptorNames="beforeAdvice"-->
+    <!--p:optimize="true"/>-->
 
-    <!--通过Advisor自动创建代理-->
+    <!--以下两个advisor通过正则表达式匹配到了相同的方法,则他们都会为这些方法添加增强（beforeAdvice和afterAdvice）-->
     <bean id="regexpAdvisor"
           class="org.springframework.aop.support.RegexpMethodPointcutAdvisor"
           p:patterns=".*test.*" p:advice-ref="beforeAdvice"/>
 
-    <bean id="regexpAdvisor2"
-          class="org.springframework.aop.support.RegexpMethodPointcutAdvisor"
-          p:patterns=".*test.*" p:advice-ref="afterAdvice"/>
+    <!--<bean id="regexpAdvisor2"-->
+    <!--class="org.springframework.aop.support.RegexpMethodPointcutAdvisor"-->
+    <!--p:patterns=".*test.*" p:advice-ref="afterAdvice"/>-->
 
     <!--扫描容器中的advisor,并将advisor自动织入匹配的bean中-->
     <bean

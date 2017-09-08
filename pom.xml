@@ -13,6 +13,7 @@
         <module>learning-spring-aop</module>
         <module>learning-spring-tx</module>
         <module>learning-spring-tx</module>
+        <module>learning-spring-mvc</module>
     </modules>
     <build>
         <plugins>
